@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import './App.css'
 import GrommetApp from 'grommet/components/App'
 import Article from 'grommet/components/Article'
 import Header from 'grommet/components/Header'
@@ -28,7 +27,7 @@ class App extends Component {
               Reactive Cars
             </Title>
             <Box direction='row'
-              pad={{"between": "medium"}}>
+              pad={{'between': 'medium'}}>
               <Paragraph margin='none'>
                 © 2017 reactive cars
               </Paragraph>
