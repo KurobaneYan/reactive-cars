@@ -6,7 +6,9 @@ import Header from 'grommet/components/Header'
 import Section from 'grommet/components/Section'
 import Footer from 'grommet/components/Footer'
 import Title from 'grommet/components/Title'
-import Button from 'grommet/components/Button'
+import Box from 'grommet/components/Box'
+import Paragraph from 'grommet/components/Paragraph'
+import FilterPage from './FilterPage'
 
 class App extends Component {
   render () {
@@ -19,13 +21,18 @@ class App extends Component {
             </Title>
           </Header>
           <Section>
-            <Button
-              label='click me'
-              primary={true}
-              onClick={() => console.log('clicked')}
-            />
+            <FilterPage />
           </Section>
-          <Footer>
+          <Footer justify='between'>
+            <Title>
+              Reactive Cars
+            </Title>
+            <Box direction='row'
+              pad={{"between": "medium"}}>
+              <Paragraph margin='none'>
+                © 2017 reactive cars
+              </Paragraph>
+            </Box>
           </Footer>
         </Article>
       </GrommetApp>
