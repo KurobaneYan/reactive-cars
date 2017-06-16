@@ -7,17 +7,7 @@ import NumberInput from 'grommet/components/NumberInput'
 import FormField from 'grommet/components/FormField'
 import Footer from 'grommet/components/Footer'
 import Button from 'grommet/components/Button'
-import {
-  filterByManufacturer,
-  filterByModel,
-  filterByPriceFrom,
-  filterByPriceTo,
-  filterByYearFrom,
-  filterByYearTo,
-  filterByTransmission,
-  filterByFuelType,
-  resetForm
-} from '../actions'
+import * as Actions from '../actions'
 
 const manufacturerModels = {
   '': [''],
@@ -92,7 +82,7 @@ class Filter extends Component {
             value={this.props.filter.fuelType} />
           <FormField label='Max killometrage'>
             <NumberInput
-              onChange={log}
+              onChange={this.props.onKilometrageChange}
               min={0}
               max={1000}
               value={this.props.filter.kilometrage} />
@@ -124,63 +114,73 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onManufacturerChange: (obj) => {
       const newValue = obj.value || null
-      dispatch(filterByManufacturer(newValue))
-      dispatch(filterByModel(null))
+      dispatch(Actions.filterByManufacturer(newValue))
+      dispatch(Actions.filterByModel(null))
     },
     onModelChange: (obj) => {
       const newValue = obj.value || null
-      dispatch(filterByModel(newValue))
+      dispatch(Actions.filterByModel(newValue))
     },
     onPriceFromChange: (event) => {
       let val = event.target.value
       if (val === '') {
-        dispatch(filterByPriceFrom(val))
+        dispatch(Actions.filterByPriceFrom(val))
       }
       val = parseInt(val, 10)
       if ((val > 0) && (val <= 1000000)) {
-        dispatch(filterByPriceFrom(val))
+        dispatch(Actions.filterByPriceFrom(val))
       }
     },
     onPriceToChange: (event) => {
       let val = event.target.value
       if (val === '') {
-        dispatch(filterByPriceTo(val))
+        dispatch(Actions.filterByPriceTo(val))
       }
       val = parseInt(val, 10)
       if ((val > 0) && (val <= 1000000)) {
-        dispatch(filterByPriceTo(val))
+        dispatch(Actions.filterByPriceTo(val))
       }
     },
     onYearFromChange: (event) => {
       let val = event.target.value
       if (val === '') {
-        dispatch(filterByYearFrom(val))
+        dispatch(Actions.filterByYearFrom(val))
       }
       val = parseInt(val, 10)
       if ((val >= 1990) && (val <= 2017)) {
-        dispatch(filterByYearFrom(val))
+        dispatch(Actions.filterByYearFrom(val))
       }
     },
     onYearToChange: (event) => {
       let val = event.target.value
       if (val === '') {
-        dispatch(filterByYearTo(val))
+        dispatch(Actions.filterByYearTo(val))
       }
       val = parseInt(val, 10)
       if ((val >= 1990) && (val <= 2017)) {
-        dispatch(filterByYearTo(val))
+        dispatch(Actions.filterByYearTo(val))
       }
     },
     onTransmissionChange: (obj) => {
       const newValue = obj.value || null
-      dispatch(filterByTransmission(newValue))
+      dispatch(Actions.filterByTransmission(newValue))
     },
     onFuelTypeChange: (obj) => {
       const newValue = obj.value || null
-      dispatch(filterByFuelType(newValue))
+      dispatch(Actions.filterByFuelType(newValue))
+    },
+    onKilometrageChange: (event) => {
+      let val = event.target.value
+      if (val === '') {
+        dispatch(Actions.filterByKilometrage(val))
+      }
+      val = parseInt(val, 10)
+      if ((val >= 0) && (val <= 1000)) {
+        dispatch(Actions.filterByKilometrage(val))
+      }
     },
     resetForm: () => {
-      dispatch(resetForm())
+      dispatch(Actions.resetForm())
     }
   }
 }

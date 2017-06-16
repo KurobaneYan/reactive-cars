@@ -66,6 +66,13 @@ export const filterByFuelType = (fuelType) => {
   }
 }
 
+export const filterByKilometrage = (kilometrage) => {
+  return {
+    type: FILTER_BY_KILOMETRAGE,
+    kilometrage
+  }
+}
+
 export const resetForm = () => {
   return {
     type: RESET_FORM
