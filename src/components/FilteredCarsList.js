@@ -7,7 +7,6 @@ import { displayMoreCars } from '../actions'
 class FilteredCars extends Component {
   render () {
     const filter = this.props.filter
-    console.log(filter)
     let cars = this.props.cars
     .sort((a, b) => b.views - a.views)
     .filter(car => {
@@ -85,11 +84,14 @@ class FilteredCars extends Component {
       }
       return true
     })
+
+    const carsLength = cars.length
+
+    cars = cars.slice(0, filter.displayCars)
     .map((car, i) => {
       return <FilteredCar key={car._id} car={car} />
     })
-    .slice(0, filter.displayCars)
-    if (filter.displayCars < this.props.cars.length) {
+    if (filter.displayCars < carsLength) {
       return (
         <List onMore={this.props.displayMore}>
           {cars}

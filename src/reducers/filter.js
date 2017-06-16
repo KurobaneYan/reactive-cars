@@ -15,7 +15,6 @@ export const initialFilter = {
 }
 
 export const filter = (state = initialFilter, action) => {
-  console.log('action', action)
   switch (action.type) {
     case ActionTypes.FILTER_BY_MANUFACTURER:
       return Object.assign({}, state, {manufacturer: action.manufacturer})
@@ -36,10 +35,9 @@ export const filter = (state = initialFilter, action) => {
     case ActionTypes.FILTER_BY_KILOMETRAGE:
       return Object.assign({}, state, {kilometrage: action.kilometrage})
     case ActionTypes.FILTER_BY_ENGINE_DISPLACEMENT:
-      return Object.assign(
-        {},
-        state,
-        {engineDisplacement: action.engineDisplacement})
+      return Object.assign({}, state, {
+        engineDisplacement: action.engineDisplacement
+      })
     case ActionTypes.RESET_FORM:
       return Object.assign({}, state, initialFilter)
     case ActionTypes.DISPLAY_MORE_CARS:
