@@ -126,7 +126,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       const newValue = obj.value || null
       dispatch(filterByManufacturer(newValue))
       dispatch(filterByModel(null))
-            onChange={this.props.onTransmissionChange}
     },
     onModelChange: (obj) => {
       const newValue = obj.value || null
