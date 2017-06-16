@@ -15,6 +15,7 @@ import {
   filterByYearFrom,
   filterByYearTo,
   filterByTransmission,
+  filterByFuelType,
   resetForm
 } from '../actions'
 
@@ -87,6 +88,7 @@ class Filter extends Component {
             value={this.props.filter.transmission} />
           <Select placeHolder='Fuel Type'
             options={fuelTypes}
+            onChange={this.props.onFuelTypeChange}
             value={this.props.filter.fuelType} />
           <FormField label='Max killometrage'>
             <NumberInput
@@ -124,6 +126,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       const newValue = obj.value || null
       dispatch(filterByManufacturer(newValue))
       dispatch(filterByModel(null))
+            onChange={this.props.onTransmissionChange}
     },
     onModelChange: (obj) => {
       const newValue = obj.value || null
@@ -164,6 +167,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     onTransmissionChange: (obj) => {
       const newValue = obj.value || null
       dispatch(filterByTransmission(newValue))
+    },
+    onFuelTypeChange: (obj) => {
+      const newValue = obj.value || null
+      dispatch(filterByFuelType(newValue))
     },
     resetForm: () => {
       dispatch(resetForm())

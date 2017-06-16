@@ -59,6 +59,13 @@ export const filterByTransmission = (transmission) => {
   }
 }
 
+export const filterByFuelType = (fuelType) => {
+  return {
+    type: FILTER_BY_FUEL_TYPE,
+    fuelType
+  }
+}
+
 export const resetForm = () => {
   return {
     type: RESET_FORM

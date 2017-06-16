@@ -6,6 +6,7 @@ export const initialFilter = {
   yearFrom: 1990,
   yearTo: 2017,
   transmission: null,
+  fuelType: null,
   kilometrage: 0,
   engineDisplacement: 0,
   priceFrom: 0,
@@ -29,6 +30,8 @@ export const filter = (state = initialFilter, action) => {
       return Object.assign({}, state, {yearTo: action.yearTo})
     case ActionTypes.FILTER_BY_TRANSMISSION:
       return Object.assign({}, state, {transmission: action.transmission})
+    case ActionTypes.FILTER_BY_FUEL_TYPE:
+      return Object.assign({}, state, {fuelType: action.fuelType})
     case ActionTypes.RESET_FORM:
       return Object.assign({}, state, initialFilter)
     default:
