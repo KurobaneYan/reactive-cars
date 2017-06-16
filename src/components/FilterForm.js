@@ -7,7 +7,15 @@ import NumberInput from 'grommet/components/NumberInput'
 import FormField from 'grommet/components/FormField'
 import Footer from 'grommet/components/Footer'
 import Button from 'grommet/components/Button'
-import { filterByManufacturer, filterByModel, resetForm } from '../actions'
+import {
+  filterByManufacturer,
+  filterByModel,
+  filterByPriceFrom,
+  filterByPriceTo,
+  filterByYearFrom,
+  filterByYearTo,
+  resetForm
+} from '../actions'
 
 const manufacturerModels = {
   '': [''],
@@ -45,7 +53,7 @@ class Filter extends Component {
           <FormField label='Price From'>
             <NumberInput
               step={100}
-              onChange={log}
+              onChange={this.props.onPriceFromChange}
               min={0}
               max={1000000}
               value={this.props.filter.priceFrom} />
@@ -53,21 +61,21 @@ class Filter extends Component {
           <FormField label='Price To'>
             <NumberInput
               step={100}
-              onChange={log}
+              onChange={this.props.onPriceToChange}
               min={0}
               max={1000000}
               value={this.props.filter.priceTo} />
           </FormField>
           <FormField label='Year From'>
             <NumberInput
-              onChange={log}
+              onChange={this.props.onYearFromChange}
               min={1990}
               max={2017}
               value={this.props.filter.yearFrom} />
           </FormField>
           <FormField label='Year To'>
             <NumberInput
-              onChange={log}
+              onChange={this.props.onYearToChange}
               min={1990}
               max={2017}
               value={this.props.filter.yearTo} />
@@ -118,6 +126,38 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     onModelChange: (obj) => {
       const newValue = obj.value || null
       dispatch(filterByModel(newValue))
+    },
+    onPriceFromChange: (event) => {
+      let val = event.target.value
+      if (val === '') {
+        dispatch(filterByPriceFrom(0))
+      }
+      val = parseInt(val, 10)
+      if ((val > 0) && (val <= 1000000)) {
+        dispatch(filterByPriceFrom(val))
+      }
+    },
+    onPriceToChange: (event) => {
+      let val = event.target.value
+      if (val === '') {
+        dispatch(filterByPriceTo(0))
+      }
+      val = parseInt(val, 10)
+      if ((val > 0) && (val <= 1000000)) {
+        dispatch(filterByPriceTo(val))
+      }
+    },
+    onYearFromChange: (event) => {
+      const val = parseInt(event.target.value, 10)
+      if ((val >= 1990) && (val <= 2017)) {
+        dispatch(filterByYearFrom(val))
+      }
+    },
+    onYearToChange: (event) => {
+      const val = parseInt(event.target.value, 10)
+      if ((val >= 1990) && (val <= 2017)) {
+        dispatch(filterByYearTo(val))
+      }
     },
     resetForm: () => {
       dispatch(resetForm())

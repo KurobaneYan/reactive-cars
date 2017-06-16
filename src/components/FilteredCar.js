@@ -8,13 +8,13 @@ class FilteredCar extends Component {
     const car = this.props.car
     const name = car.manufacturer + ' ' + car.model
     return (
-      <ListItem>
-        <Box>
-          <Image
-            alt={name}
-            size='small'
-            src={car.photos[0]}
-          />
+      <ListItem separator='none'>
+        <Image
+          alt={name}
+          size='small'
+          src={car.photos[0]}
+        />
+        <Box pad='small'>
           {name}
         </Box>
       </ListItem>

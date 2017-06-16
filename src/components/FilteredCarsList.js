@@ -52,11 +52,26 @@ class FilteredCars extends Component {
       return false
     })
     .filter(car => {
-      if (filter.fuelType) {
-        if (car.fuelType === filter.fuelType) {
-          return true
-        }
-        return false
+      if ((filter.priceFrom <= car.price) && (filter.priceTo >= car.price)) {
+        return true
+      }
+      return false
+    })
+    .filter(car => {
+      if (filter.kilometrage === 0) {
+        return true
+      }
+      if (filter.kilometrage >= car.kilometrage) {
+        return true
+      }
+      return false
+    })
+    .filter(car => {
+      if (filter.engineDisplacement === 0) {
+        return true
+      }
+      if (filter.engineDisplacement >= car.engineDisplacement) {
+        return true
       }
       return true
     })

@@ -9,8 +9,8 @@ class FilterPage extends Component {
     return (
       <Split
         showOnResponsive='both'
-        fixed={true}
-      >
+        flex='right'
+        fixed={false}>
         <Box>
           <FilterForm />
         </Box>
