@@ -1,6 +1,7 @@
 import * as ActionTypes from '../actions'
+import cars from '../cars'
 
-const resetFilter = {
+const initialFilter = {
   manufacturer: null,
   model: null,
   yearFrom: 1990,
@@ -12,7 +13,12 @@ const resetFilter = {
   priceTo: 1000000
 }
 
-const filter = (state = {}, action) => {
+const initialState = {
+  cars,
+  filter: initialFilter
+}
+
+const filter = (state = initialFilter, action) => {
   console.log('action', action)
   switch (action.type) {
     case ActionTypes.FILTER_BY_MANUFACTURER:
@@ -28,13 +34,13 @@ const filter = (state = {}, action) => {
     case ActionTypes.FILTER_BY_YEAR_TO:
       return Object.assign({}, state, {yearTo: action.yearTo})
     case ActionTypes.RESET_FORM:
-      return Object.assign({}, state, resetFilter)
+      return Object.assign({}, state, initialFilter)
     default:
       return state
   }
 }
 
-const rootReducer = (state = {}, action) => {
+const rootReducer = (state = initialState, action) => {
   return {
     cars: state.cars.slice(),
     filter: filter(state.filter, action)
