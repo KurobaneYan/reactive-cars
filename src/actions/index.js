@@ -1,6 +1,3 @@
-export const CARS_REQUEST = 'CARS_REQUEST'
-export const CARS_SUCCESS = 'CARS_SUCCESS'
-export const CARS_FAILURE = 'CARS_FAILURE'
 export const FILTER_BY_MANUFACTURER = 'FILTER_BY_MANUFACTURER'
 export const FILTER_BY_MODEL = 'FILTER_BY_MODEL'
 export const FILTER_BY_PRICE_FROM = 'FILTER_BY_PRICE_FROM'
@@ -52,6 +49,13 @@ export const filterByYearTo = (yearTo) => {
   return {
     type: FILTER_BY_YEAR_TO,
     yearTo
+  }
+}
+
+export const filterByTransmission = (transmission) => {
+  return {
+    type: FILTER_BY_TRANSMISSION,
+    transmission
   }
 }
 

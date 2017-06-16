@@ -14,6 +14,7 @@ import {
   filterByPriceTo,
   filterByYearFrom,
   filterByYearTo,
+  filterByTransmission,
   resetForm
 } from '../actions'
 
@@ -24,9 +25,9 @@ const manufacturerModels = {
   'Mitsubishi': ['', 'Lancer', 'Outlander', 'Pajero']
 }
 
-const fuelTypes = ['Disel', 'Gasoline']
+const fuelTypes = ['', 'Disel', 'Gasoline']
 
-const transmissions = ['Automatic', 'Manual']
+const transmissions = ['', 'Automatic', 'Manual']
 
 function log (event) {
   console.log(event.target.value)
@@ -82,6 +83,7 @@ class Filter extends Component {
           </FormField>
           <Select placeHolder='Transmission'
             options={transmissions}
+            onChange={this.props.onTransmissionChange}
             value={this.props.filter.transmission} />
           <Select placeHolder='Fuel Type'
             options={fuelTypes}
@@ -158,6 +160,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       if ((val >= 1990) && (val <= 2017)) {
         dispatch(filterByYearTo(val))
       }
+    },
+    onTransmissionChange: (obj) => {
+      const newValue = obj.value || null
+      dispatch(filterByTransmission(newValue))
     },
     resetForm: () => {
       dispatch(resetForm())

@@ -29,7 +29,7 @@ class FilteredCars extends Component {
     })
     .filter(car => {
       if (filter.transmission) {
-        if (car.transmission === filter.transmission) {
+        if (car.transmissionType === filter.transmission) {
           return true
         }
         return false
