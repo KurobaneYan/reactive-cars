@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import List from 'grommet/components/List'
 import FilteredCar from './FilteredCar'
+import { displayMoreCars } from '../actions'
 
 class FilteredCars extends Component {
   render () {
@@ -87,12 +88,20 @@ class FilteredCars extends Component {
     .map((car, i) => {
       return <FilteredCar key={car._id} car={car} />
     })
-    .slice(0, 20)
-    return (
-      <List>
-        {cars}
-      </List>
-    )
+    .slice(0, filter.displayCars)
+    if (filter.displayCars < this.props.cars.length) {
+      return (
+        <List onMore={this.props.displayMore}>
+          {cars}
+        </List>
+      )
+    } else {
+      return (
+        <List>
+          {cars}
+        </List>
+      )
+    }
   }
 }
 
@@ -101,6 +110,15 @@ const mapStateToProps = (state) => ({
   filter: state.filter
 })
 
-const FilteredCarsList = connect(mapStateToProps)(FilteredCars)
+const mapDispatchToProps = (dispatch) => ({
+  displayMore: () => {
+    dispatch(displayMoreCars())
+  }
+})
+
+const FilteredCarsList = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FilteredCars)
 
 export default FilteredCarsList

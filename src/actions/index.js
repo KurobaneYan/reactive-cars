@@ -9,6 +9,7 @@ export const FILTER_BY_FUEL_TYPE = 'FILTER_BY_FUEL_TYPE'
 export const FILTER_BY_KILOMETRAGE = 'FILTER_BY_KILOMETRAGE'
 export const FILTER_BY_ENGINE_DISPLACEMENT = 'FILTER_BY_ENGINE_DISPLACEMENT'
 export const RESET_FORM = 'RESET_FORM'
+export const DISPLAY_MORE_CARS = 'DISPLAY_MORE_CARS'
 
 export const filterByManufacturer = (manufacturer) => {
   return {
@@ -80,8 +81,10 @@ export const filterByEngineDisplacement = (engineDisplacement) => {
   }
 }
 
-export const resetForm = () => {
-  return {
-    type: RESET_FORM
-  }
-}
+export const resetForm = () => ({
+  type: RESET_FORM
+})
+
+export const displayMoreCars = () => ({
+  type: DISPLAY_MORE_CARS
+})

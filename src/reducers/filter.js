@@ -10,7 +10,8 @@ export const initialFilter = {
   kilometrage: 0,
   engineDisplacement: 0,
   priceFrom: 0,
-  priceTo: 1000000
+  priceTo: 1000000,
+  displayCars: 10
 }
 
 export const filter = (state = initialFilter, action) => {
@@ -41,6 +42,8 @@ export const filter = (state = initialFilter, action) => {
         {engineDisplacement: action.engineDisplacement})
     case ActionTypes.RESET_FORM:
       return Object.assign({}, state, initialFilter)
+    case ActionTypes.DISPLAY_MORE_CARS:
+      return Object.assign({}, state, {displayCars: state.displayCars + 10})
     default:
       return state
   }

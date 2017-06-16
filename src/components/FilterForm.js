@@ -106,90 +106,88 @@ const mapStateToProps = (state) => ({
   filter: state.filter
 })
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    onManufacturerChange: (obj) => {
-      const newValue = obj.value || null
-      dispatch(Actions.filterByManufacturer(newValue))
-      dispatch(Actions.filterByModel(null))
-    },
-    onModelChange: (obj) => {
-      const newValue = obj.value || null
-      dispatch(Actions.filterByModel(newValue))
-    },
-    onPriceFromChange: (event) => {
-      let val = event.target.value
-      if (val === '') {
-        dispatch(Actions.filterByPriceFrom(val))
-      }
-      val = parseInt(val, 10)
-      if ((val > 0) && (val <= 1000000)) {
-        dispatch(Actions.filterByPriceFrom(val))
-      }
-    },
-    onPriceToChange: (event) => {
-      let val = event.target.value
-      if (val === '') {
-        dispatch(Actions.filterByPriceTo(val))
-      }
-      val = parseInt(val, 10)
-      if ((val > 0) && (val <= 1000000)) {
-        dispatch(Actions.filterByPriceTo(val))
-      }
-    },
-    onYearFromChange: (event) => {
-      let val = event.target.value
-      if (val === '') {
-        dispatch(Actions.filterByYearFrom(val))
-      }
-      val = parseInt(val, 10)
-      if ((val >= 1990) && (val <= 2017)) {
-        dispatch(Actions.filterByYearFrom(val))
-      }
-    },
-    onYearToChange: (event) => {
-      let val = event.target.value
-      if (val === '') {
-        dispatch(Actions.filterByYearTo(val))
-      }
-      val = parseInt(val, 10)
-      if ((val >= 1990) && (val <= 2017)) {
-        dispatch(Actions.filterByYearTo(val))
-      }
-    },
-    onTransmissionChange: (obj) => {
-      const newValue = obj.value || null
-      dispatch(Actions.filterByTransmission(newValue))
-    },
-    onFuelTypeChange: (obj) => {
-      const newValue = obj.value || null
-      dispatch(Actions.filterByFuelType(newValue))
-    },
-    onKilometrageChange: (event) => {
-      let val = event.target.value
-      if (val === '') {
-        dispatch(Actions.filterByKilometrage(val))
-      }
-      val = parseInt(val, 10)
-      if ((val >= 0) && (val <= 1000)) {
-        dispatch(Actions.filterByKilometrage(val))
-      }
-    },
-    onEngineDisplacementChange: (event) => {
-      let val = event.target.value
-      if (val === '') {
-        dispatch(Actions.filterByEngineDisplacement(val))
-      }
-      val = parseInt(val, 10)
-      if ((val >= 0) && (val <= 5000)) {
-        dispatch(Actions.filterByEngineDisplacement(val))
-      }
-    },
-    resetForm: () => {
-      dispatch(Actions.resetForm())
+const mapDispatchToProps = (dispatch) => ({
+  onManufacturerChange: (obj) => {
+    const newValue = obj.value || null
+    dispatch(Actions.filterByManufacturer(newValue))
+    dispatch(Actions.filterByModel(null))
+  },
+  onModelChange: (obj) => {
+    const newValue = obj.value || null
+    dispatch(Actions.filterByModel(newValue))
+  },
+  onPriceFromChange: (event) => {
+    let val = event.target.value
+    if (val === '') {
+      dispatch(Actions.filterByPriceFrom(val))
     }
+    val = parseInt(val, 10)
+    if ((val > 0) && (val <= 1000000)) {
+      dispatch(Actions.filterByPriceFrom(val))
+    }
+  },
+  onPriceToChange: (event) => {
+    let val = event.target.value
+    if (val === '') {
+      dispatch(Actions.filterByPriceTo(val))
+    }
+    val = parseInt(val, 10)
+    if ((val > 0) && (val <= 1000000)) {
+      dispatch(Actions.filterByPriceTo(val))
+    }
+  },
+  onYearFromChange: (event) => {
+    let val = event.target.value
+    if (val === '') {
+      dispatch(Actions.filterByYearFrom(val))
+    }
+    val = parseInt(val, 10)
+    if ((val >= 1990) && (val <= 2017)) {
+      dispatch(Actions.filterByYearFrom(val))
+    }
+  },
+  onYearToChange: (event) => {
+    let val = event.target.value
+    if (val === '') {
+      dispatch(Actions.filterByYearTo(val))
+    }
+    val = parseInt(val, 10)
+    if ((val >= 1990) && (val <= 2017)) {
+      dispatch(Actions.filterByYearTo(val))
+    }
+  },
+  onTransmissionChange: (obj) => {
+    const newValue = obj.value || null
+    dispatch(Actions.filterByTransmission(newValue))
+  },
+  onFuelTypeChange: (obj) => {
+    const newValue = obj.value || null
+    dispatch(Actions.filterByFuelType(newValue))
+  },
+  onKilometrageChange: (event) => {
+    let val = event.target.value
+    if (val === '') {
+      dispatch(Actions.filterByKilometrage(val))
+    }
+    val = parseInt(val, 10)
+    if ((val >= 0) && (val <= 1000)) {
+      dispatch(Actions.filterByKilometrage(val))
+    }
+  },
+  onEngineDisplacementChange: (event) => {
+    let val = event.target.value
+    if (val === '') {
+      dispatch(Actions.filterByEngineDisplacement(val))
+    }
+    val = parseInt(val, 10)
+    if ((val >= 0) && (val <= 5000)) {
+      dispatch(Actions.filterByEngineDisplacement(val))
+    }
+  },
+  resetForm: () => {
+    dispatch(Actions.resetForm())
   }
-}
+})
 
 const FilterForm = connect(mapStateToProps, mapDispatchToProps)(Filter)
 
