@@ -1,16 +1,10 @@
+import { combineReducers } from 'redux'
 import { filter, initialFilter } from './filter'
-import cars from '../cars'
+import cars from './cars'
 
-const initialState = {
+const rootReducer = combineReducers({
   cars,
-  filter: initialFilter
-}
-
-const rootReducer = (state = initialState, action) => {
-  return {
-    cars: state.cars.slice(),
-    filter: filter(state.filter, action)
-  }
-}
+  filter
+})
 
 export default rootReducer
