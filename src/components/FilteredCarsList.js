@@ -73,11 +73,14 @@ class FilteredCars extends Component {
       return true
     })
     .filter(car => {
-      if (filter.engineDisplacement === 0) {
-        return true
-      }
-      if (filter.engineDisplacement >= car.engineDisplacement) {
-        return true
+      if (filter.engineDisplacement !== '') {
+        if (filter.engineDisplacement === 0) {
+          return true
+        }
+        if (filter.engineDisplacement === car.engineDisplacement) {
+          return true
+        }
+        return false
       }
       return true
     })

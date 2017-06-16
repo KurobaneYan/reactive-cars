@@ -73,6 +73,13 @@ export const filterByKilometrage = (kilometrage) => {
   }
 }
 
+export const filterByEngineDisplacement = (engineDisplacement) => {
+  return {
+    type: FILTER_BY_ENGINE_DISPLACEMENT,
+    engineDisplacement
+  }
+}
+
 export const resetForm = () => {
   return {
     type: RESET_FORM

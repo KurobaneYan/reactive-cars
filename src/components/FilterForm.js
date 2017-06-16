@@ -20,10 +20,6 @@ const fuelTypes = ['', 'Disel', 'Gasoline']
 
 const transmissions = ['', 'Automatic', 'Manual']
 
-function log (event) {
-  console.log(event.target.value)
-}
-
 class Filter extends Component {
   render () {
     const manufacturers = Object.keys(manufacturerModels)
@@ -80,7 +76,7 @@ class Filter extends Component {
             options={fuelTypes}
             onChange={this.props.onFuelTypeChange}
             value={this.props.filter.fuelType} />
-          <FormField label='Max killometrage'>
+          <FormField label='Max killometrage in Mega meters'>
             <NumberInput
               onChange={this.props.onKilometrageChange}
               min={0}
@@ -89,7 +85,7 @@ class Filter extends Component {
           </FormField>
           <FormField label='Engine Displacement'>
             <NumberInput
-              onChange={log}
+              onChange={this.props.onEngineDisplacementChange}
               step={100}
               min={0}
               max={5000}
@@ -177,6 +173,16 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       val = parseInt(val, 10)
       if ((val >= 0) && (val <= 1000)) {
         dispatch(Actions.filterByKilometrage(val))
+      }
+    },
+    onEngineDisplacementChange: (event) => {
+      let val = event.target.value
+      if (val === '') {
+        dispatch(Actions.filterByEngineDisplacement(val))
+      }
+      val = parseInt(val, 10)
+      if ((val >= 0) && (val <= 5000)) {
+        dispatch(Actions.filterByEngineDisplacement(val))
       }
     },
     resetForm: () => {

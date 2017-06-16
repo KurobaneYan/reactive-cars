@@ -34,6 +34,11 @@ export const filter = (state = initialFilter, action) => {
       return Object.assign({}, state, {fuelType: action.fuelType})
     case ActionTypes.FILTER_BY_KILOMETRAGE:
       return Object.assign({}, state, {kilometrage: action.kilometrage})
+    case ActionTypes.FILTER_BY_ENGINE_DISPLACEMENT:
+      return Object.assign(
+        {},
+        state,
+        {engineDisplacement: action.engineDisplacement})
     case ActionTypes.RESET_FORM:
       return Object.assign({}, state, initialFilter)
     default:
