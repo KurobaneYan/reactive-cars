@@ -46,10 +46,13 @@ class FilteredCars extends Component {
       return true
     })
     .filter(car => {
-      if ((filter.yearFrom <= car.year) && (filter.yearTo >= car.year)) {
-        return true
+      if (filter.yearFrom && filter.yearTo) {
+        if ((filter.yearFrom <= car.year) && (filter.yearTo >= car.year)) {
+          return true
+        }
+        return false
       }
-      return false
+      return true
     })
     .filter(car => {
       if ((filter.priceFrom <= car.price) && (filter.priceTo >= car.price)) {

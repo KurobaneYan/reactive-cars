@@ -134,7 +134,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     onPriceFromChange: (event) => {
       let val = event.target.value
       if (val === '') {
-        dispatch(filterByPriceFrom(0))
+        dispatch(filterByPriceFrom(val))
       }
       val = parseInt(val, 10)
       if ((val > 0) && (val <= 1000000)) {
@@ -144,7 +144,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     onPriceToChange: (event) => {
       let val = event.target.value
       if (val === '') {
-        dispatch(filterByPriceTo(0))
+        dispatch(filterByPriceTo(val))
       }
       val = parseInt(val, 10)
       if ((val > 0) && (val <= 1000000)) {
@@ -152,13 +152,21 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       }
     },
     onYearFromChange: (event) => {
-      const val = parseInt(event.target.value, 10)
+      let val = event.target.value
+      if (val === '') {
+        dispatch(filterByYearFrom(val))
+      }
+      val = parseInt(val, 10)
       if ((val >= 1990) && (val <= 2017)) {
         dispatch(filterByYearFrom(val))
       }
     },
     onYearToChange: (event) => {
-      const val = parseInt(event.target.value, 10)
+      let val = event.target.value
+      if (val === '') {
+        dispatch(filterByYearTo(val))
+      }
+      val = parseInt(val, 10)
       if ((val >= 1990) && (val <= 2017)) {
         dispatch(filterByYearTo(val))
       }
