@@ -15,7 +15,7 @@ class FilterPage extends Component {
           <FilterForm />
         </Box>
         <Box>
-          <FilteredCarsList cars={this.props.cars} />
+          <FilteredCarsList />
         </Box>
       </Split>
     )
