@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Route, Switch } from 'react-router-dom'
 import GrommetApp from 'grommet/components/App'
 import Article from 'grommet/components/Article'
 import Header from 'grommet/components/Header'
@@ -8,6 +9,7 @@ import Title from 'grommet/components/Title'
 import Box from 'grommet/components/Box'
 import Paragraph from 'grommet/components/Paragraph'
 import FilterPage from './FilterPage'
+import Index from './Index'
 
 class App extends Component {
   render () {
@@ -20,7 +22,10 @@ class App extends Component {
             </Title>
           </Header>
           <Section>
-            <FilterPage />
+            <Switch>
+              <Route exact path='/' component={Index}/>
+              <Route path='/filter' component={FilterPage}/>
+            </Switch>
           </Section>
           <Footer justify='between'>
             <Title>

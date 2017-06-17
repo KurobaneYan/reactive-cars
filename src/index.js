@@ -23,8 +23,8 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <Switch>
-        <Route exact path='/' component={App} />
         <Route path='/admin' component={Admin} />
+        <Route path='/' component={App} />
       </Switch>
     </ConnectedRouter>
   </Provider>,
