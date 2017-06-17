@@ -2,7 +2,7 @@ import '../node_modules/grommet/grommet-hpinc.min.css'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, compose, applyMiddleware } from 'redux'
 import App from './components/App'
 import Admin from './components/Admin'
 import rootReducer from './reducers'
@@ -13,11 +13,10 @@ import { ConnectedRouter, routerMiddleware } from 'react-router-redux'
 const history = createHistory()
 const middleware = routerMiddleware(history)
 
-const store = createStore(
-  rootReducer,
+const store = createStore(rootReducer, undefined, compose(
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   applyMiddleware(middleware)
-)
+))
 
 ReactDOM.render(
   <Provider store={store}>
