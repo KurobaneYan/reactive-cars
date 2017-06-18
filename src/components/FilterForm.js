@@ -20,7 +20,7 @@ const fuelTypes = ['', 'Disel', 'Gasoline']
 
 const transmissions = ['', 'Automatic', 'Manual']
 
-class Filter extends Component {
+class FilteredForm extends Component {
   render () {
     const manufacturers = Object.keys(manufacturerModels)
     let models = []
@@ -189,6 +189,4 @@ const mapDispatchToProps = (dispatch) => ({
   }
 })
 
-const FilterForm = connect(mapStateToProps, mapDispatchToProps)(Filter)
-
-export default FilterForm
+export default connect(mapStateToProps, mapDispatchToProps)(FilteredForm)

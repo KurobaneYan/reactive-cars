@@ -4,7 +4,7 @@ import List from 'grommet/components/List'
 import FilteredCar from './FilteredCar'
 import { displayMoreCars } from '../actions'
 
-class FilteredCars extends Component {
+class FilteredCarsList extends Component {
   render () {
     const filter = this.props.filter
     let cars = this.props.cars
@@ -118,9 +118,4 @@ const mapDispatchToProps = (dispatch) => ({
   }
 })
 
-const FilteredCarsList = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(FilteredCars)
-
-export default FilteredCarsList
+export default connect(mapStateToProps, mapDispatchToProps)(FilteredCarsList)

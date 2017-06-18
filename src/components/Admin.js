@@ -8,7 +8,7 @@ import Title from 'grommet/components/Title'
 import Box from 'grommet/components/Box'
 import Paragraph from 'grommet/components/Paragraph'
 
-class App extends Component {
+class Admin extends Component {
   render () {
     return (
       <GrommetApp>
@@ -41,4 +41,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default Admin
