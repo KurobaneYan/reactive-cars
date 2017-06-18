@@ -42,6 +42,8 @@ export const filter = (state = initialFilter, action) => {
       return Object.assign({}, state, initialFilter)
     case ActionTypes.DISPLAY_MORE_CARS:
       return Object.assign({}, state, {displayCars: state.displayCars + 10})
+    case ActionTypes.RESET_DISPLAY_CARS:
+      return Object.assign({}, state, {displayCars: initialFilter.displayCars})
     default:
       return state
   }

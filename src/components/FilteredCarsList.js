@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import List from 'grommet/components/List'
+
 import FilteredCar from './FilteredCar'
-import { displayMoreCars } from '../actions'
+import { displayMoreCars, resetDisplayCars } from '../actions'
 
 class FilteredCarsList extends Component {
+  componentWillUnmount () {
+    this.props.resetDisplayCars()
+  }
   render () {
     const filter = this.props.filter
     let cars = this.props.cars
@@ -115,6 +119,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   displayMore: () => {
     dispatch(displayMoreCars())
+  },
+  resetDisplayCars: () => {
+    dispatch(resetDisplayCars())
   }
 })
 
