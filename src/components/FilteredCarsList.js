@@ -108,7 +108,7 @@ class FilteredCarsList extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  cars: state.cars,
+  cars: state.cars.items,
   filter: state.filter
 })
 

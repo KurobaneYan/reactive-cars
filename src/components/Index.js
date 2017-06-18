@@ -21,7 +21,7 @@ class Index extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  cars: state.cars
+  cars: state.cars.items
 })
 
 export default connect(mapStateToProps)(Index)
