@@ -1,0 +1,5 @@
+.carCard {
+  padding-left: 4px;
+  padding-right: 4px;
+  flex: 0 1 calc(20%);
+}
