@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import ListItem from 'grommet/components/ListItem'
 import Box from 'grommet/components/Box'
 import Heading from 'grommet/components/Heading'
@@ -8,16 +9,21 @@ class FilteredCar extends Component {
   render () {
     const car = this.props.car
     const name = car.manufacturer + ' ' + car.model
+    const carUrl = '/car/' + car._id
     return (
       <ListItem separator='none'>
-        <Image
-          alt={name}
-          src={car.photos[0]}
-        />
+        <Link to={carUrl}>
+          <Image
+            alt={name}
+            src={car.photos[0]}
+          />
+        </Link>
         <Box pad='small' alignContent='start'>
-          <Heading tag='h3'>
-            {name}
-          </Heading>
+          <Link to={carUrl}>
+            <Heading tag='h3'>
+              {name}
+            </Heading>
+          </Link>
           <Box>
             {car.views} views
           </Box>
