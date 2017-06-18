@@ -9,8 +9,9 @@ import Title from 'grommet/components/Title'
 import Box from 'grommet/components/Box'
 import Paragraph from 'grommet/components/Paragraph'
 
-import FilterPage from './FilterPage'
 import Index from './Index'
+import CarPage from './CarPage'
+import FilterPage from './FilterPage'
 
 class App extends Component {
   render () {
@@ -36,6 +37,7 @@ class App extends Component {
           <Section>
             <Switch>
               <Route exact path='/' component={Index} />
+              <Route path='/car/:id' component={CarPage} />
               <Route path='/filter' component={FilterPage} />
             </Switch>
           </Section>
