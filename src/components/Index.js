@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Box from 'grommet/components/Box'
+
 import './Index.css'
 import CarCard from './CarCard'
+import { fetchCarsIfNeeded } from '../actions/async'
 
 class Index extends Component {
+  componentDidMount () {
+    this.props.fetchCars()
+  }
   render () {
     const cars = this.props.cars
     .sort((a, b) => b.views - a.views)
@@ -24,4 +29,10 @@ const mapStateToProps = (state) => ({
   cars: state.cars.items
 })
 
-export default connect(mapStateToProps)(Index)
+const mapDispatchToProps = (dispatch) => ({
+  fetchCars: () => {
+    dispatch(fetchCarsIfNeeded())
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Index)
