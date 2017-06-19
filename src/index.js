@@ -8,10 +8,10 @@ import { Route, Switch } from 'react-router-dom'
 import { ConnectedRouter, routerMiddleware } from 'react-router-redux'
 import thunkMiddleware from 'redux-thunk'
 
-import App from './components/App'
-import Admin from './components/Admin'
+import App from './components/app'
+import Admin from './components/admin'
 import rootReducer from './reducers'
-import { fetchCarsIfNeeded } from './actions/async'
+import { fetchCarsIfNeeded } from './actions/cars'
 
 const history = createHistory()
 const middleware = routerMiddleware(history)

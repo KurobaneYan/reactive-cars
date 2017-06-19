@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Box from 'grommet/components/Box'
 
-import './Index.css'
+import './Home.css'
 import CarCard from './CarCard'
-import { fetchCarsIfNeeded } from '../actions/async'
+import { fetchCarsIfNeeded } from '../../actions/cars'
 
 class Index extends Component {
   componentDidMount () {

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import List from 'grommet/components/List'
 
 import FilteredCar from './FilteredCar'
-import { displayMoreCars, resetDisplayCars } from '../actions'
+import { displayMoreCars, resetDisplayCars } from '../../actions/filter'
 
 class FilteredCarsList extends Component {
   componentWillUnmount () {

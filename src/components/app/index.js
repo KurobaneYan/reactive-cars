@@ -9,11 +9,11 @@ import Title from 'grommet/components/Title'
 import Box from 'grommet/components/Box'
 import Paragraph from 'grommet/components/Paragraph'
 
-import Index from './Index'
+import Home from './Home'
 import CarPage from './CarPage'
 import FilterPage from './FilterPage'
 
-class App extends Component {
+class Index extends Component {
   render () {
     return (
       <GrommetApp>
@@ -36,10 +36,10 @@ class App extends Component {
           </Header>
           <Section>
             <Switch>
-              <Route exact path='/' component={Index} />
+              <Route exact path='/' component={Home} />
               <Route path='/car/:id' component={CarPage} />
               <Route path='/filter' component={FilterPage} />
-              <Redirect from='/' to='/'/>
+              <Redirect from='/' to='/' />
             </Switch>
           </Section>
           <Footer justify='between'>
@@ -59,4 +59,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default Index

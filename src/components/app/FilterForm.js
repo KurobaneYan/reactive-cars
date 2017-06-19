@@ -14,8 +14,7 @@ import Footer from 'grommet/components/Footer'
 import Button from 'grommet/components/Button'
 import queryString from 'query-string'
 
-import * as Actions from '../actions'
-import { getCatalog } from '../actions/async'
+import * as Actions from '../../actions/filter'
 
 const manufacturerModels = {
   'BMW': ['', 'I3', 'I8', 'M6'],
@@ -48,7 +47,7 @@ class FilteredForm extends Component {
   changeRoute () {
     let filter = omit(this.props.filter, ['catalog', 'catalogIsFetching'])
     filter = omitBy(filter, isNull)
-    filter = omitBy(filter, (i) => i === '' ? true : false)
+    filter = omitBy(filter, (i) => i === '')
 
     const testRoute = queryString.stringify(filter)
     this.props.changeRoute(testRoute)
@@ -231,7 +230,7 @@ const mapDispatchToProps = (dispatch) => ({
     }
   },
   getCatalog: () => {
-    dispatch(getCatalog())
+    dispatch(Actions.getCatalog())
   },
   resetForm: () => {
     dispatch(Actions.resetForm())

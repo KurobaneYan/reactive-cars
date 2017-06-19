@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Card from 'grommet/components/Card'
+
 import './CarCard.css'
 
 class CarCard extends Component {

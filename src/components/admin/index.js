@@ -1,17 +1,15 @@
 import React, { Component } from 'react'
-import { Route, Switch, Link, Redirect } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import GrommetApp from 'grommet/components/App'
 import Article from 'grommet/components/Article'
 import Header from 'grommet/components/Header'
 import Section from 'grommet/components/Section'
-import Footer from 'grommet/components/Footer'
 import Title from 'grommet/components/Title'
 import Box from 'grommet/components/Box'
-import Paragraph from 'grommet/components/Paragraph'
 
-import AdminIndex from './AdminIndex'
+import Home from './Home'
 
-class Admin extends Component {
+class Index extends Component {
   render () {
     return (
       <GrommetApp>
@@ -26,7 +24,8 @@ class Admin extends Component {
           </Header>
           <Section>
             <Switch>
-              <Route path='/admin' component={AdminIndex} />
+              <Route exact path='/admin' component={Home} />
+              <Redirect from='/admin' to='/admin' />
             </Switch>
           </Section>
         </Article>
@@ -35,4 +34,4 @@ class Admin extends Component {
   }
 }
 
-export default Admin
+export default Index

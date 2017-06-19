@@ -1,4 +1,4 @@
-import { REQUEST_CARS, RECEIVE_CARS } from '../actions/async'
+import { REQUEST_CARS, RECEIVE_CARS } from '../actions/cars'
 
 const initialState = { items: [], isFetching: false }
 

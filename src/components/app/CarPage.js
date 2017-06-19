@@ -10,7 +10,7 @@ import Spinning from 'grommet/components/icons/Spinning'
 import ViewIcon from 'grommet/components/icons/base/View'
 import Split from 'grommet/components/Split'
 
-import { showCar, resetCar } from '../actions/async'
+import { showCar, resetCar } from '../../actions/singleCar'
 
 class CarPage extends Component {
   componentDidMount () {

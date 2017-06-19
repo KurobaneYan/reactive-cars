@@ -5,7 +5,7 @@ import Split from 'grommet/components/Split'
 
 import FilteredCarsList from './FilteredCarsList'
 import FilterForm from './FilterForm'
-import { fetchCarsIfNeeded } from '../actions/async'
+import { fetchCarsIfNeeded } from '../../actions/cars'
 
 class FilterPage extends Component {
   componentDidMount () {

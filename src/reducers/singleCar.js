@@ -2,7 +2,7 @@ import {
   REQUEST_SINGLE_CAR,
   RECEIVE_SINGLE_CAR,
   RESET_SINGLE_CAR
-} from '../actions/async'
+} from '../actions/singleCar'
 
 const initialState = { data: {}, isFetching: false }
 

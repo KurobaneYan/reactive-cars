@@ -1,5 +1,4 @@
-import * as ActionTypes from '../actions'
-import { REQUEST_CATALOG, RECEIVE_CATALOG } from '../actions/async'
+import * as ActionTypes from '../actions/filter'
 
 export const initialFilter = {
   manufacturer: null,
@@ -41,9 +40,9 @@ export const filter = (state = initialFilter, action) => {
       return Object.assign({}, state, {
         engineDisplacement: action.engineDisplacement
       })
-    case REQUEST_CATALOG:
+    case ActionTypes.REQUEST_CATALOG:
       return Object.assign({}, state, {catalogIsFetching: true})
-    case RECEIVE_CATALOG:
+    case ActionTypes.RECEIVE_CATALOG:
       return Object.assign({}, state, {
         catalog: action.catalog,
         catalogIsFetching: false

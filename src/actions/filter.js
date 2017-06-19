@@ -1,3 +1,5 @@
+import fetch from 'isomorphic-fetch'
+
 export const FILTER_BY_MANUFACTURER = 'FILTER_BY_MANUFACTURER'
 export const FILTER_BY_MODEL = 'FILTER_BY_MODEL'
 export const FILTER_BY_PRICE_FROM = 'FILTER_BY_PRICE_FROM'
@@ -12,6 +14,8 @@ export const RESET_FORM = 'RESET_FORM'
 export const DISPLAY_MORE_CARS = 'DISPLAY_MORE_CARS'
 export const RESET_DISPLAY_CARS = 'RESET_DISPAY_CARS'
 export const RESTORE_FILTER = 'RESTORE_FILTER'
+export const REQUEST_CATALOG = 'REQUEST_CATALOG'
+export const RECEIVE_CATALOG = 'RECEIVE_CATALOG'
 
 export const filterByManufacturer = (manufacturer) => {
   return {
@@ -99,3 +103,21 @@ export const restoreFilter = (filter) => ({
   type: RESTORE_FILTER,
   filter
 })
+
+const requestCatalog = () => ({
+  type: REQUEST_CATALOG
+})
+
+const receiveCatalog = (catalog) => ({
+  type: RECEIVE_CATALOG,
+  catalog
+})
+
+export const getCatalog = () => {
+  return dispatch => {
+    dispatch(requestCatalog())
+    return fetch('http://localhost:4000/catalog')
+    .then(response => response.json())
+    .then(json => dispatch(receiveCatalog(json)))
+  }
+}
