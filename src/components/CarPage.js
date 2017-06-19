@@ -34,7 +34,7 @@ class CarPage extends Component {
 
     if (car.error) {
       return (
-        <Box colorIndex='critical'>
+        <Box colorIndex='critical' pad='medium'>
           <Heading>
             Car not found
           </Heading>
