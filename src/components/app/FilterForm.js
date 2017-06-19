@@ -73,7 +73,7 @@ class FilteredForm extends Component {
       }
     }
     return (
-      <Form>
+      <Form compact>
         <FormFields>
           <Select placeHolder='Manufacturer'
             options={manufacturers}
