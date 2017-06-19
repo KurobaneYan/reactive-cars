@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Route, Switch, Link, Redirect } from 'react-router-dom'
 import GrommetApp from 'grommet/components/App'
 import Article from 'grommet/components/Article'
 import Header from 'grommet/components/Header'
@@ -7,6 +8,8 @@ import Footer from 'grommet/components/Footer'
 import Title from 'grommet/components/Title'
 import Box from 'grommet/components/Box'
 import Paragraph from 'grommet/components/Paragraph'
+
+import AdminIndex from './AdminIndex'
 
 class Admin extends Component {
   render () {
@@ -18,23 +21,14 @@ class Admin extends Component {
               REACTIVE CARS
             </Title>
             <Box>
-              Admin
+              hello, Admin
             </Box>
           </Header>
           <Section>
-            TODO: Admin pages
+            <Switch>
+              <Route path='/admin' component={AdminIndex} />
+            </Switch>
           </Section>
-          <Footer justify='between'>
-            <Title>
-              Reactive Cars
-            </Title>
-            <Box direction='row'
-              pad={{'between': 'medium'}}>
-              <Paragraph margin='none'>
-                © 2017 reactive cars
-              </Paragraph>
-            </Box>
-          </Footer>
         </Article>
       </GrommetApp>
     )
