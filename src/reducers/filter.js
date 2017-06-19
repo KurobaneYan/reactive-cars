@@ -1,4 +1,5 @@
 import * as ActionTypes from '../actions'
+import { REQUEST_CATALOG, RECEIVE_CATALOG } from '../actions/async'
 
 export const initialFilter = {
   manufacturer: null,
@@ -11,7 +12,9 @@ export const initialFilter = {
   engineDisplacement: 0,
   priceFrom: 0,
   priceTo: 1000000,
-  displayCars: 10
+  displayCars: 10,
+  catalogIsFetching: false,
+  catalog: {}
 }
 
 export const filter = (state = initialFilter, action) => {
@@ -38,8 +41,15 @@ export const filter = (state = initialFilter, action) => {
       return Object.assign({}, state, {
         engineDisplacement: action.engineDisplacement
       })
+    case REQUEST_CATALOG:
+      return Object.assign({}, state, {catalogIsFetching: true})
+    case RECEIVE_CATALOG:
+      return Object.assign({}, state, {
+        catalog: action.catalog,
+        catalogIsFetching: false
+      })
     case ActionTypes.RESET_FORM:
-      return Object.assign({}, state, initialFilter)
+      return Object.assign({}, state, initialFilter, {catalog: state.catalog})
     case ActionTypes.DISPLAY_MORE_CARS:
       return Object.assign({}, state, {displayCars: state.displayCars + 10})
     case ActionTypes.RESET_DISPLAY_CARS:

@@ -9,8 +9,8 @@ const requestCars = () => ({
 
 const receiveCars = (cars) => ({
   type: RECEIVE_CARS,
-  cars: cars,
-  receivedAt: Date.now()
+  receivedAt: Date.now(),
+  cars
 })
 
 const fetchCars = (url) => {
@@ -59,7 +59,7 @@ const requestCar = () => ({
 
 const receiveCar = (car) => ({
   type: RECEIVE_SINGLE_CAR,
-  car: car
+  car
 })
 
 export const showCar = (id) => {
@@ -74,3 +74,24 @@ export const showCar = (id) => {
 export const resetCar = () => ({
   type: RESET_SINGLE_CAR
 })
+
+export const REQUEST_CATALOG = 'REQUEST_CATALOG'
+export const RECEIVE_CATALOG = 'RECEIVE_CATALOG'
+
+const requestCatalog = () => ({
+  type: REQUEST_CATALOG
+})
+
+const receiveCatalog = (catalog) => ({
+  type: RECEIVE_CATALOG,
+  catalog
+})
+
+export const getCatalog = () => {
+  return dispatch => {
+    dispatch(requestCatalog())
+    return fetch('http://localhost:4000/catalog')
+    .then(response => response.json())
+    .then(json => dispatch(receiveCatalog(json)))
+  }
+}

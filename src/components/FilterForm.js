@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import isEmpty from 'lodash/isEmpty'
 import Form from 'grommet/components/Form'
 import FormFields from 'grommet/components/FormFields'
 import Select from 'grommet/components/Select'
@@ -9,9 +10,9 @@ import Footer from 'grommet/components/Footer'
 import Button from 'grommet/components/Button'
 
 import * as Actions from '../actions'
+import { getCatalog } from '../actions/async'
 
 const manufacturerModels = {
-  '': [''],
   'BMW': ['', 'I3', 'I8', 'M6'],
   'Volvo': ['', 'V90', 'S90', 'XC90'],
   'Mitsubishi': ['', 'Lancer', 'Outlander', 'Pajero']
@@ -22,11 +23,24 @@ const fuelTypes = ['', 'Disel', 'Gasoline']
 const transmissions = ['', 'Automatic', 'Manual']
 
 class FilteredForm extends Component {
+  componentDidMount () {
+    this.props.getCatalog()
+  }
+
   render () {
-    const manufacturers = Object.keys(manufacturerModels)
-    let models = []
-    if (this.props.filter.manufacturer) {
-      models = manufacturerModels[this.props.filter.manufacturer]
+    const filter = this.props.filter
+    let models = ['']
+    let manufacturers = ['']
+    if (filter.catalogIsFetching && isEmpty(filter.catalog)) {
+      manufacturers = manufacturers.concat(Object.keys(manufacturerModels))
+      if (filter.manufacturer) {
+        models = models.concat(manufacturerModels[filter.manufacturer])
+      }
+    } else {
+      manufacturers = manufacturers.concat(Object.keys(filter.catalog))
+      if (filter.manufacturer) {
+        models = models.concat(filter.catalog[filter.manufacturer])
+      }
     }
     return (
       <Form>
@@ -184,6 +198,9 @@ const mapDispatchToProps = (dispatch) => ({
     if ((val >= 0) && (val <= 5000)) {
       dispatch(Actions.filterByEngineDisplacement(val))
     }
+  },
+  getCatalog: () => {
+    dispatch(getCatalog())
   },
   resetForm: () => {
     dispatch(Actions.resetForm())
