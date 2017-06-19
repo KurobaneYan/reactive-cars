@@ -11,6 +11,7 @@ export const FILTER_BY_ENGINE_DISPLACEMENT = 'FILTER_BY_ENGINE_DISPLACEMENT'
 export const RESET_FORM = 'RESET_FORM'
 export const DISPLAY_MORE_CARS = 'DISPLAY_MORE_CARS'
 export const RESET_DISPLAY_CARS = 'RESET_DISPAY_CARS'
+export const RESTORE_FILTER = 'RESTORE_FILTER'
 
 export const filterByManufacturer = (manufacturer) => {
   return {
@@ -92,4 +93,9 @@ export const displayMoreCars = () => ({
 
 export const resetDisplayCars = () => ({
   type: RESET_DISPLAY_CARS
+})
+
+export const restoreFilter = (filter) => ({
+  type: RESTORE_FILTER,
+  filter
 })

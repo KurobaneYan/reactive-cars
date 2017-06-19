@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
 import isEmpty from 'lodash/isEmpty'
+import omit from 'lodash/omit'
+import omitBy from 'lodash/omitBy'
+import isNull from 'lodash/isNull'
 import Form from 'grommet/components/Form'
 import FormFields from 'grommet/components/FormFields'
 import Select from 'grommet/components/Select'
@@ -8,6 +12,7 @@ import NumberInput from 'grommet/components/NumberInput'
 import FormField from 'grommet/components/FormField'
 import Footer from 'grommet/components/Footer'
 import Button from 'grommet/components/Button'
+import queryString from 'query-string'
 
 import * as Actions from '../actions'
 import { getCatalog } from '../actions/async'
@@ -23,8 +28,34 @@ const fuelTypes = ['', 'Disel', 'Gasoline']
 const transmissions = ['', 'Automatic', 'Manual']
 
 class FilteredForm extends Component {
+  constructor () {
+    super()
+    this.changeRoute = this.changeRoute.bind(this)
+  }
+
   componentDidMount () {
     this.props.getCatalog()
+    let newFilter = queryString.parse(window.location.search)
+    for (let key in newFilter) {
+      const number = parseInt(newFilter[key], 10)
+      if (!isNaN(number)) {
+        newFilter[key] = number
+      }
+    }
+    this.props.restoreFilter(newFilter)
+  }
+
+  changeRoute () {
+    let filter = omit(this.props.filter, ['catalog', 'catalogIsFetching'])
+    filter = omitBy(filter, isNull)
+    filter = omitBy(filter, (i) => i === '' ? true : false)
+
+    const testRoute = queryString.stringify(filter)
+    this.props.changeRoute(testRoute)
+  }
+
+  componentDidUpdate () {
+    this.changeRoute()
   }
 
   render () {
@@ -204,6 +235,13 @@ const mapDispatchToProps = (dispatch) => ({
   },
   resetForm: () => {
     dispatch(Actions.resetForm())
+  },
+  changeRoute: (route) => {
+    const newRoute = '/filter?' + route
+    dispatch(push(newRoute))
+  },
+  restoreFilter: (filter) => {
+    dispatch(Actions.restoreFilter(filter))
   }
 })
 
