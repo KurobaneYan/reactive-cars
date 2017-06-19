@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Switch, Link } from 'react-router-dom'
+import { Route, Switch, Link, Redirect } from 'react-router-dom'
 import GrommetApp from 'grommet/components/App'
 import Article from 'grommet/components/Article'
 import Header from 'grommet/components/Header'
@@ -39,6 +39,7 @@ class App extends Component {
               <Route exact path='/' component={Index} />
               <Route path='/car/:id' component={CarPage} />
               <Route path='/filter' component={FilterPage} />
+              <Redirect from='/' to='/'/>
             </Switch>
           </Section>
           <Footer justify='between'>
