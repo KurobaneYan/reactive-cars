@@ -16,7 +16,7 @@ import * as Actions from '../../actions/singleCar'
 import { createCar } from '../../actions/admin'
 
 const CLOUDINARY_UPLOAD_PRESET = 'reactive-cars'
-const CLOUDINARY_UPLOAD_URL = '	https://api.cloudinary.com/v1_1/dvgllaiei/upload'
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dvgllaiei/upload'
 
 const car = {
   manufacturer: 'Mitsubishi',

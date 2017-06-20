@@ -20,7 +20,7 @@ import { updateCar } from '../../actions/admin'
 import getCatalog from '../../actions/catalog'
 
 const CLOUDINARY_UPLOAD_PRESET = 'reactive-cars'
-const CLOUDINARY_UPLOAD_URL = '	https://api.cloudinary.com/v1_1/dvgllaiei/upload'
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dvgllaiei/upload'
 
 const fuelTypes = ['Disel', 'Gasoline']
 const transmissions = ['Automatic', 'Manual']
@@ -68,7 +68,6 @@ class EditPage extends Component {
     })
     .catch(err => console.error(err))
   }
-
 
   render () {
     if (this.props.isFetching) {
