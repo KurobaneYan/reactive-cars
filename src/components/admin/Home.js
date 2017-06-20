@@ -5,7 +5,7 @@ import Split from 'grommet/components/Split'
 
 import FilteredCarsList from './FilteredCarsList'
 import FilterForm from './FilterForm'
-import { fetchCarsIfNeeded } from '../../actions/cars'
+import { fetchCars } from '../../actions/cars'
 
 class FilterPage extends Component {
   componentDidMount () {
@@ -31,7 +31,7 @@ class FilterPage extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   fetchCars: () => {
-    dispatch((fetchCarsIfNeeded()))
+    dispatch((fetchCars('http://localhost:4000')))
   }
 })
 

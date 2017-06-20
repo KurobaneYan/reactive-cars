@@ -7,7 +7,7 @@ import Button from 'grommet/components/Button'
 import EditIcon from 'grommet/components/icons/base/Edit'
 import CloseIcon from 'grommet/components/icons/base/Close'
 
-import deleteCar from '../../actions/admin'
+import { deleteCar } from '../../actions/admin'
 
 class FilteredCar extends Component {
   constructor () {

@@ -82,7 +82,7 @@ class CarPage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  car: state.singleCar.data,
+  car: state.singleCar,
   isFetching: state.singleCar.isFetching
 })
 

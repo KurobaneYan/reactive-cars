@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Switch, Redirect } from 'react-router-dom'
+import { Route, Switch, Link, Redirect } from 'react-router-dom'
 import GrommetApp from 'grommet/components/App'
 import Article from 'grommet/components/Article'
 import Header from 'grommet/components/Header'
@@ -8,6 +8,7 @@ import Title from 'grommet/components/Title'
 import Box from 'grommet/components/Box'
 
 import Home from './Home'
+import EditPage from './EditPage'
 
 class Index extends Component {
   render () {
@@ -16,7 +17,9 @@ class Index extends Component {
         <Article>
           <Header colorIndex='accent-3' pad='medium' justify='between'>
             <Title>
-              REACTIVE CARS
+              <Link to='/admin'>
+                REACTIVE CARS
+              </Link>
             </Title>
             <Box>
               hello, Admin
@@ -25,6 +28,7 @@ class Index extends Component {
           <Section>
             <Switch>
               <Route exact path='/admin' component={Home} />
+              <Route path='/admin/edit/:id' component={EditPage} />
               <Redirect from='/admin' to='/admin' />
             </Switch>
           </Section>
