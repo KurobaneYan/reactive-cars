@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import Dropzone from 'react-dropzone'
+import axios from 'axios'
 import isEmpty from 'lodash/isEmpty'
 import Box from 'grommet/components/Box'
 import Heading from 'grommet/components/Heading'
@@ -16,10 +18,14 @@ import Button from 'grommet/components/Button'
 import * as Actions from '../../actions/singleCar'
 import { updateCar } from '../../actions/admin'
 
+const CLOUDINARY_UPLOAD_PRESET = 'reactive-cars'
+const CLOUDINARY_UPLOAD_URL = '	https://api.cloudinary.com/v1_1/dvgllaiei/upload'
+
 class EditPage extends Component {
   constructor (props) {
     super(props)
     this.save = this.save.bind(this)
+    this.handleImageUpload = this.handleImageUpload.bind(this)
   }
 
   save (event) {
@@ -36,6 +42,28 @@ class EditPage extends Component {
   componentWillUnmount () {
     this.props.resetCar()
   }
+
+  onImageDrop (files) {
+    this.handleImageUpload(files[0])
+  }
+
+  handleImageUpload (file) {
+    let formData = new FormData()
+    formData.append('file', file)
+    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+
+    const config = {
+      headers: { 'content-type': 'multipart/form-data' }
+    }
+
+    axios.post(CLOUDINARY_UPLOAD_URL, formData, config)
+    .then(res => {
+      console.log(res.data.secure_url)
+      this.props.addPhoto(res.data.secure_url)
+    })
+    .catch(err => console.error(err))
+  }
+
 
   render () {
     if (this.props.isFetching) {
@@ -61,9 +89,14 @@ class EditPage extends Component {
       )
     }
 
-    const photos = car.photos.map((photo, i) => {
-      return <Image src={photo} key={i} />
-    })
+    let photos = []
+    let showPhotos = false
+    if (car.photos) {
+      showPhotos = true
+      photos = car.photos.map((photo, i) => {
+        return <Image src={photo} key={i} />
+      })
+    }
 
     return (
       <Box align='center'>
@@ -123,14 +156,25 @@ class EditPage extends Component {
               onChange={this.props.onPriceChange}
               value={car.price} />
           </FormField>
-          <FormField label='Photos'>
-            <TextInput />
-          </FormField>
-          <Box size='large'>
-            <Carousel persistentNav={false} autoplaySpeed={100000}>
+          <Box align='center'>
+            <Dropzone
+              onDrop={this.onImageDrop.bind(this)}
+              multiple={false}
+              accept='image/*'>
+              <div>Drop am image or click to select a file to upload.</div>
+            </Dropzone>
+          </Box>
+          {showPhotos ? (
+            <Carousel>
               {photos}
             </Carousel>
-          </Box>
+          ) : (
+            <Box />
+          )}
+          <Button
+            label='Remove Photo'
+            fill
+            onClick={this.props.removePhoto} />
           <Button
             label='save'
             fill
@@ -195,6 +239,12 @@ const mapDispatchToProps = (dispatch) => ({
   },
   save: (id, car) => {
     dispatch(updateCar(id, car))
+  },
+  addPhoto: (photo) => {
+    dispatch(Actions.addPhoto(photo))
+  },
+  removePhoto: () => {
+    dispatch(Actions.removePhoto())
   },
   resetCar: () => {
     dispatch(Actions.resetCar())

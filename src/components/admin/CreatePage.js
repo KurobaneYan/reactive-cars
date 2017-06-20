@@ -146,14 +146,14 @@ class CreatePage extends Component {
               onChange={this.props.onPriceChange}
               value={car.price} />
           </FormField>
-          <FormField label='Photos' >
+          <Box align='center'>
             <Dropzone
               onDrop={this.onImageDrop.bind(this)}
               multiple={false}
               accept='image/*'>
               <div>Drop am image or click to select a file to upload.</div>
             </Dropzone>
-          </FormField>
+          </Box>
           {showPhotos ? (
             <Carousel>
               {photos}
