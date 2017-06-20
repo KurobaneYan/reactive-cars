@@ -78,14 +78,12 @@ export const hideFilter = () => ({
   type: HIDE_FILTER
 })
 
-const requestCreateCar = (id) => ({
-  type: REQUEST_CREATE_CAR,
-  id
+const requestCreateCar = () => ({
+  type: REQUEST_CREATE_CAR
 })
 
-const receiveCreateCar = (id, data) => ({
+const receiveCreateCar = (data) => ({
   type: RECEIVE_CREATE_CAR,
-  id,
   data
 })
 
@@ -94,12 +92,12 @@ const failedToCreateCar = (error) => ({
   error
 })
 
-export const createCar = (id, car) => {
+export const createCar = (car) => {
   return dispatch => {
-    dispatch(requestCreateCar(id))
+    dispatch(requestCreateCar())
     return axios.post('http://localhost:4000/create', car)
     .then(response => response.json())
-    .then(json => dispatch(receiveCreateCar(id, json)))
+    .then(json => dispatch(receiveCreateCar(json)))
     .catch(error => dispatch(failedToCreateCar(error)))
   }
 }

@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import Box from 'grommet/components/Box'
-import Heading from 'grommet/components/Heading'
 import Carousel from 'grommet/components/Carousel'
 import Image from 'grommet/components/Image'
 import Spinning from 'grommet/components/icons/Spinning'
@@ -53,19 +51,6 @@ class CreatePage extends Component {
     }
 
     const car = this.props.car
-
-    if (car.error) {
-      return (
-        <Box colorIndex='critical' pad='medium'>
-          <Heading>
-            Car not found
-          </Heading>
-          <Link to='/'>
-            Return to home page
-          </Link>
-        </Box>
-      )
-    }
 
     let photos = []
     let showPhotos = false
@@ -204,8 +189,8 @@ const mapDispatchToProps = (dispatch) => ({
       dispatch(Actions.setPrice(val))
     }
   },
-  create: (id, car) => {
-    dispatch(createCar(id, car))
+  create: (car) => {
+    dispatch(createCar(car))
   },
   resetCar: () => {
     dispatch(Actions.resetCar())
