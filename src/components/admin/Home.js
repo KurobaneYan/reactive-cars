@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Box from 'grommet/components/Box'
-import Split from 'grommet/components/Split'
+import Layer from 'grommet/components/Layer'
+import Button from 'grommet/components/Button'
+import CloseIcon from 'grommet/components/icons/base/Close'
 
 import FilteredCarsList from './FilteredCarsList'
 import FilterForm from './FilterForm'
 import { fetchCars } from '../../actions/cars'
+import { showFilter, hideFilter } from '../../actions/admin'
 
 class FilterPage extends Component {
   componentDidMount () {
@@ -13,26 +16,38 @@ class FilterPage extends Component {
   }
 
   render () {
+    const hidden = !this.props.isFilterVisible
     return (
-      <Split
-        showOnResponsive='both'
-        flex='right'
-        fixed={false}>
-        <Box>
+      <Box>
+        <Button onClick={this.props.showFilter} primary>
+          Show filter
+        </Button>
+        <Layer
+          closer={<Button onClick={this.props.hideFilter}><CloseIcon /></Button>}
+          flush
+          hidden={hidden}>
           <FilterForm />
-        </Box>
-        <Box>
-          <FilteredCarsList />
-        </Box>
-      </Split>
+        </Layer>
+        <FilteredCarsList />
+      </Box>
     )
   }
 }
 
+const mapStateToProps = (state) => ({
+  isFilterVisible: state.admin.isFilterVisible
+})
+
 const mapDispatchToProps = (dispatch) => ({
   fetchCars: () => {
     dispatch((fetchCars('http://localhost:4000')))
+  },
+  showFilter: () => {
+    dispatch(showFilter())
+  },
+  hideFilter: () => {
+    dispatch(hideFilter())
   }
 })
 
-export default connect(state => state, mapDispatchToProps)(FilterPage)
+export default connect(mapStateToProps, mapDispatchToProps)(FilterPage)

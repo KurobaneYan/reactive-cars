@@ -9,6 +9,8 @@ export const FAILED_TO_DELETE_CAR = 'FAILED_TO_DELETE_CAR'
 export const REQUEST_UPDATE_CAR = 'REQUEST_UPDATE_CAR'
 export const RECEIVE_UPDATE_CAR = 'RECEIVE_UPDATE_CAR'
 export const FAILED_TO_UPDATE_CAR = 'FAILED_TO_UPDATE_CAR'
+export const SHOW_FILTER = 'SHOW_FILTER'
+export const HIDE_FILTER = 'HIDE_FILTER'
 
 const requestDeleteCar = (id) => ({
   type: REQUEST_DELETE_CAR,
@@ -64,3 +66,11 @@ export const updateCar = (id, car) => {
     .catch(error => dispatch(failedToUpdateCar(error)))
   }
 }
+
+export const showFilter = () => ({
+  type: SHOW_FILTER
+})
+
+export const hideFilter = () => ({
+  type: HIDE_FILTER
+})

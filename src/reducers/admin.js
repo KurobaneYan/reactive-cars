@@ -4,7 +4,8 @@ export const initialState = {
   isPerformingActon: false,
   id: {},
   data: {},
-  error: {}
+  error: {},
+  isFilterVisible: false
 }
 
 const admin = (state = initialState, action) => {
@@ -35,6 +36,10 @@ const admin = (state = initialState, action) => {
         error: action.error,
         isPerformingActon: false
       })
+    case ActionTypes.SHOW_FILTER:
+      return Object.assign({}, { ...state, isFilterVisible: true })
+    case ActionTypes.HIDE_FILTER:
+      return Object.assign({}, { ...state, isFilterVisible: false })
     default:
       return state
   }

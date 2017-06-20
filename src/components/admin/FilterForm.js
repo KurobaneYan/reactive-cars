@@ -12,6 +12,7 @@ import NumberInput from 'grommet/components/NumberInput'
 import FormField from 'grommet/components/FormField'
 import Footer from 'grommet/components/Footer'
 import Button from 'grommet/components/Button'
+import Box from 'grommet/components/Box'
 import queryString from 'query-string'
 
 import * as Actions from '../../actions/filter'
@@ -75,77 +76,79 @@ class FilteredForm extends Component {
       }
     }
     return (
-      <Form compact>
-        <FormFields>
-          <Select placeHolder='Manufacturer'
-            options={manufacturers}
-            onChange={this.props.onManufacturerChange}
-            value={this.props.filter.manufacturer} />
-          <Select placeHolder='Model'
-            options={models}
-            onChange={this.props.onModelChange}
-            value={this.props.filter.model} />
-          <FormField label='Price From'>
-            <NumberInput
-              step={100}
-              onChange={this.props.onPriceFromChange}
-              min={0}
-              max={1000000}
-              value={this.props.filter.priceFrom} />
-          </FormField>
-          <FormField label='Price To'>
-            <NumberInput
-              step={100}
-              onChange={this.props.onPriceToChange}
-              min={0}
-              max={1000000}
-              value={this.props.filter.priceTo} />
-          </FormField>
-          <FormField label='Year From'>
-            <NumberInput
-              onChange={this.props.onYearFromChange}
-              min={1990}
-              max={2017}
-              value={this.props.filter.yearFrom} />
-          </FormField>
-          <FormField label='Year To'>
-            <NumberInput
-              onChange={this.props.onYearToChange}
-              min={1990}
-              max={2017}
-              value={this.props.filter.yearTo} />
-          </FormField>
-          <Select placeHolder='Transmission'
-            options={transmissions}
-            onChange={this.props.onTransmissionChange}
-            value={this.props.filter.transmission} />
-          <Select placeHolder='Fuel Type'
-            options={fuelTypes}
-            onChange={this.props.onFuelTypeChange}
-            value={this.props.filter.fuelType} />
-          <FormField label='Max killometrage in Mega meters'>
-            <NumberInput
-              onChange={this.props.onKilometrageChange}
-              min={0}
-              max={1000}
-              value={this.props.filter.kilometrage} />
-          </FormField>
-          <FormField label='Engine Displacement'>
-            <NumberInput
-              onChange={this.props.onEngineDisplacementChange}
-              step={100}
-              min={0}
-              max={5000}
-              value={this.props.filter.engineDisplacement} />
-          </FormField>
-        </FormFields>
-        <Footer pad={{'vertical': 'medium'}}>
-          <Button label='Reset'
-            secondary
-            fill
-            onClick={this.props.resetForm} />
-        </Footer>
-      </Form>
+      <Box pad='medium'>
+        <Form>
+          <FormFields>
+            <Select placeHolder='Manufacturer'
+              options={manufacturers}
+              onChange={this.props.onManufacturerChange}
+              value={this.props.filter.manufacturer} />
+            <Select placeHolder='Model'
+              options={models}
+              onChange={this.props.onModelChange}
+              value={this.props.filter.model} />
+            <FormField label='Price From'>
+              <NumberInput
+                step={100}
+                onChange={this.props.onPriceFromChange}
+                min={0}
+                max={1000000}
+                value={this.props.filter.priceFrom} />
+            </FormField>
+            <FormField label='Price To'>
+              <NumberInput
+                step={100}
+                onChange={this.props.onPriceToChange}
+                min={0}
+                max={1000000}
+                value={this.props.filter.priceTo} />
+            </FormField>
+            <FormField label='Year From'>
+              <NumberInput
+                onChange={this.props.onYearFromChange}
+                min={1990}
+                max={2017}
+                value={this.props.filter.yearFrom} />
+            </FormField>
+            <FormField label='Year To'>
+              <NumberInput
+                onChange={this.props.onYearToChange}
+                min={1990}
+                max={2017}
+                value={this.props.filter.yearTo} />
+            </FormField>
+            <Select placeHolder='Transmission'
+              options={transmissions}
+              onChange={this.props.onTransmissionChange}
+              value={this.props.filter.transmission} />
+            <Select placeHolder='Fuel Type'
+              options={fuelTypes}
+              onChange={this.props.onFuelTypeChange}
+              value={this.props.filter.fuelType} />
+            <FormField label='Max killometrage in Mega meters'>
+              <NumberInput
+                onChange={this.props.onKilometrageChange}
+                min={0}
+                max={1000}
+                value={this.props.filter.kilometrage} />
+            </FormField>
+            <FormField label='Engine Displacement'>
+              <NumberInput
+                onChange={this.props.onEngineDisplacementChange}
+                step={100}
+                min={0}
+                max={5000}
+                value={this.props.filter.engineDisplacement} />
+            </FormField>
+          </FormFields>
+          <Footer pad={{'vertical': 'medium'}}>
+            <Button label='Reset'
+              secondary
+              fill
+              onClick={this.props.resetForm} />
+          </Footer>
+        </Form>
+      </Box>
     )
   }
 }

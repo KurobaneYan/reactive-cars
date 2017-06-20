@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Table from 'grommet/components/Table'
+import TableHeader from 'grommet/components/TableHeader'
 
 import FilteredCar from './FilteredCar'
 import { displayMoreCars, resetDisplayCars } from '../../actions/filter'
@@ -96,9 +97,24 @@ class FilteredCarsList extends Component {
       return <FilteredCar key={car._id} car={car} />
     })
 
+    const headerFields = [
+      'Photo',
+      'Manufacturer',
+      'Model',
+      'Views',
+      'Kilometrage',
+      'Engine displacement',
+      'Year',
+      'Fuel type',
+      'Transmission',
+      'Price',
+      'Delete'
+    ]
+
     if (filter.displayCars < carsLength) {
       return (
-        <Table onMore={this.props.displayMore}>
+        <Table onMore={this.props.displayMore} responsive={false} selectable>
+          <TableHeader labels={headerFields} />
           <tbody>
             {cars}
           </tbody>
@@ -106,7 +122,8 @@ class FilteredCarsList extends Component {
       )
     } else {
       return (
-        <Table>
+        <Table responsive={false} selectable>
+          <TableHeader labels={headerFields} />
           <tbody>
             {cars}
           </tbody>
