@@ -17,9 +17,13 @@ import Button from 'grommet/components/Button'
 
 import * as Actions from '../../actions/singleCar'
 import { updateCar } from '../../actions/admin'
+import getCatalog from '../../actions/catalog'
 
 const CLOUDINARY_UPLOAD_PRESET = 'reactive-cars'
 const CLOUDINARY_UPLOAD_URL = '	https://api.cloudinary.com/v1_1/dvgllaiei/upload'
+
+const fuelTypes = ['Disel', 'Gasoline']
+const transmissions = ['Automatic', 'Manual']
 
 class EditPage extends Component {
   constructor (props) {
@@ -35,6 +39,7 @@ class EditPage extends Component {
   }
 
   componentDidMount () {
+    this.props.getCatalog()
     const id = this.props.match.params.id
     this.props.readCar(id)
   }
@@ -98,16 +103,29 @@ class EditPage extends Component {
       })
     }
 
+    let manufacturers = []
+    let models = []
+    if (!isEmpty(this.props.catalog)) {
+      manufacturers = Object.keys(this.props.catalog)
+      if (car.manufacturer) {
+        models = this.props.catalog[car.manufacturer]
+      }
+    }
+
     return (
       <Box align='center'>
         <Form>
           <FormField label='Manufacturer'>
             <TextInput
+              suggestions={manufacturers}
+              onSelect={this.props.onManufacturerChange}
               value={car.manufacturer}
               onDOMChange={this.props.onManufacturerChange} />
           </FormField>
           <FormField label='Model'>
             <TextInput
+              suggestions={models}
+              onSelect={this.props.onModelChange}
               value={car.model}
               onDOMChange={this.props.onModelChange} />
           </FormField>
@@ -133,6 +151,8 @@ class EditPage extends Component {
           </FormField>
           <FormField label='Fuel Type'>
             <TextInput
+              suggestions={fuelTypes}
+              onSelect={this.props.onFuelTypeChange}
               value={car.fuelType}
               onDOMChange={this.props.onFuelTypeChange} />
           </FormField>
@@ -145,6 +165,8 @@ class EditPage extends Component {
           </FormField>
           <FormField label='Transmission Type'>
             <TextInput
+              suggestions={transmissions}
+              onSelect={this.props.onTransmissionTypeChange}
               value={car.transmissionType}
               onDOMChange={this.props.onTransmissionTypeChange} />
           </FormField>
@@ -188,7 +210,8 @@ class EditPage extends Component {
 
 const mapStateToProps = (state) => ({
   car: state.singleCar,
-  isFetching: state.singleCar.isFetching
+  isFetching: state.singleCar.isFetching,
+  catalog: state.catalog.data
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -196,10 +219,20 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(Actions.readCar(id))
   },
   onManufacturerChange: (e) => {
-    dispatch(Actions.setManufacturer(e.target.value))
+    if (e.target) {
+      dispatch(Actions.setManufacturer(e.target.value))
+    }
+    if (e.suggestion) {
+      dispatch(Actions.setManufacturer(e.suggestion))
+    }
   },
   onModelChange: (e) => {
-    dispatch(Actions.setModel(e.target.value))
+    if (e.target) {
+      dispatch(Actions.setModel(e.target.value))
+    }
+    if (e.suggestion) {
+      dispatch(Actions.setModel(e.suggestion))
+    }
   },
   onYearChange: (e) => {
     const val = parseInt(e.target.value, 10)
@@ -220,7 +253,12 @@ const mapDispatchToProps = (dispatch) => ({
     }
   },
   onFuelTypeChange: (e) => {
-    dispatch(Actions.setFuelType(e.target.value))
+    if (e.target) {
+      dispatch(Actions.setFuelType(e.target.value))
+    }
+    if (e.suggestion) {
+      dispatch(Actions.setFuelType(e.suggestion))
+    }
   },
   onEngineDisplacementChange: (e) => {
     const val = parseInt(e.target.value, 10)
@@ -229,7 +267,12 @@ const mapDispatchToProps = (dispatch) => ({
     }
   },
   onTransmissionTypeChange: (e) => {
-    dispatch(Actions.setTransmissionType(e.target.value))
+    if (e.target) {
+      dispatch(Actions.setTransmissionType(e.target.value))
+    }
+    if (e.suggestion) {
+      dispatch(Actions.setTransmissionType(e.suggestion))
+    }
   },
   onPriceChange: (e) => {
     const val = parseInt(e.target.value, 10)
@@ -248,6 +291,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   resetCar: () => {
     dispatch(Actions.resetCar())
+  },
+  getCatalog: () => {
+    dispatch(getCatalog())
   }
 })
 
