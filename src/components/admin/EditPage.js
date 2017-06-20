@@ -25,6 +25,7 @@ class EditPage extends Component {
   save (event) {
     const car = this.props.car
     this.props.save(car._id, car)
+    alert('changes saved')
   }
 
   componentDidMount () {

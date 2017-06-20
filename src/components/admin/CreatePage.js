@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Dropzone from 'react-dropzone'
+import axios from 'axios'
 import Box from 'grommet/components/Box'
 import Carousel from 'grommet/components/Carousel'
 import Image from 'grommet/components/Image'
@@ -12,6 +14,9 @@ import Button from 'grommet/components/Button'
 
 import * as Actions from '../../actions/singleCar'
 import { createCar } from '../../actions/admin'
+
+const CLOUDINARY_UPLOAD_PRESET = 'reactive-cars'
+const CLOUDINARY_UPLOAD_URL = '	https://api.cloudinary.com/v1_1/dvgllaiei/upload'
 
 const car = {
   manufacturer: 'Mitsubishi',
@@ -30,11 +35,12 @@ class CreatePage extends Component {
   constructor (props) {
     super(props)
     this.create = this.create.bind(this)
+    this.handleImageUpload = this.handleImageUpload.bind(this)
   }
 
   create (event) {
-    const car = this.props.car
-    this.props.create(car._id, car)
+    this.props.create(this.props.car)
+    alert('Car created')
   }
 
   componentDidMount () {
@@ -43,6 +49,27 @@ class CreatePage extends Component {
 
   componentWillUnmount () {
     this.props.resetCar()
+  }
+
+  onImageDrop (files) {
+    this.handleImageUpload(files[0])
+  }
+
+  handleImageUpload (file) {
+    let formData = new FormData()
+    formData.append('file', file)
+    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+
+    const config = {
+      headers: { 'content-type': 'multipart/form-data' }
+    }
+
+    axios.post(CLOUDINARY_UPLOAD_URL, formData, config)
+    .then(res => {
+      console.log(res.data.secure_url)
+      this.props.addPhoto(res.data.secure_url)
+    })
+    .catch(err => console.error(err))
   }
 
   render () {
@@ -119,7 +146,14 @@ class CreatePage extends Component {
               onChange={this.props.onPriceChange}
               value={car.price} />
           </FormField>
-          <FormField label='Photos' />
+          <FormField label='Photos' >
+            <Dropzone
+              onDrop={this.onImageDrop.bind(this)}
+              multiple={false}
+              accept='image/*'>
+              <div>Drop am image or click to select a file to upload.</div>
+            </Dropzone>
+          </FormField>
           {showPhotos ? (
             <Carousel>
               {photos}
@@ -127,6 +161,10 @@ class CreatePage extends Component {
           ) : (
             <Box />
           )}
+          <Button
+            label='Remove Photo'
+            fill
+            onClick={this.props.removePhoto} />
           <Button
             label='create'
             fill
@@ -188,6 +226,12 @@ const mapDispatchToProps = (dispatch) => ({
     if ((val > 0) && (val <= 1000000)) {
       dispatch(Actions.setPrice(val))
     }
+  },
+  addPhoto: (photo) => {
+    dispatch(Actions.addPhoto(photo))
+  },
+  removePhoto: () => {
+    dispatch(Actions.removePhoto())
   },
   create: (car) => {
     dispatch(createCar(car))
