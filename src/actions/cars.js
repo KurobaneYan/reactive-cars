@@ -13,7 +13,7 @@ const receiveCars = (cars) => ({
   cars
 })
 
-const fetchCars = (url) => {
+export const fetchCars = (url) => {
   return dispatch => {
     dispatch(requestCars())
     return fetch(url)

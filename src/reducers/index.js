@@ -5,12 +5,14 @@ import { filter } from './filter'
 import cars from './cars'
 import singleCar from './singleCar'
 import catalog from './catalog'
+import admin from './admin'
 
 const rootReducer = combineReducers({
   cars,
   filter,
   catalog,
   singleCar,
+  admin,
   router: routerReducer
 })
 

@@ -7,16 +7,23 @@ import Button from 'grommet/components/Button'
 import EditIcon from 'grommet/components/icons/base/Edit'
 import CloseIcon from 'grommet/components/icons/base/Close'
 
+import deleteCar from '../../actions/admin'
+
 class FilteredCar extends Component {
   constructor () {
     super()
     this.changeRoute = this.changeRoute.bind(this)
+    this.deleteCar = this.deleteCar.bind(this)
   }
 
   changeRoute () {
     const route = '/admin/edit/' + this.props.car._id
     console.log('route', route)
     this.props.changeRoute(route)
+  }
+
+  deleteCar () {
+    this.props.deleteCar(this.props.car._id)
   }
 
   render () {
@@ -39,7 +46,7 @@ class FilteredCar extends Component {
           {car.views}
         </td>
         <td>
-          {car.kilometrage * 1000}
+          {car.kilometrage}
         </td>
         <td>
           {car.engineDisplacement}
@@ -60,7 +67,7 @@ class FilteredCar extends Component {
           <Button icon={<EditIcon />} onClick={this.changeRoute} />
         </td>
         <td>
-          <Button icon={<CloseIcon />} onClick={() => console.log('close')} />
+          <Button icon={<CloseIcon />} onClick={this.deleteCar} />
         </td>
       </TableRow>
     )
@@ -70,6 +77,9 @@ class FilteredCar extends Component {
 const mapDispatchToProps = (dispatch) => ({
   changeRoute: (route) => {
     dispatch(push(route))
+  },
+  deleteCar: (id) => {
+    dispatch(deleteCar(id))
   }
 })
 
