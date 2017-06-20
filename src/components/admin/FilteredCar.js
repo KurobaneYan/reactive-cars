@@ -5,6 +5,7 @@ import TableRow from 'grommet/components/TableRow'
 import Image from 'grommet/components/Image'
 import Button from 'grommet/components/Button'
 import CloseIcon from 'grommet/components/icons/base/Close'
+import EditIcon from 'grommet/components/icons/base/Edit'
 
 import { deleteCar } from '../../actions/admin'
 
@@ -17,7 +18,6 @@ class FilteredCar extends Component {
 
   changeRoute () {
     const route = '/admin/edit/' + this.props.car._id
-    console.log('route', route)
     this.props.changeRoute(route)
   }
 
@@ -29,7 +29,7 @@ class FilteredCar extends Component {
     const car = this.props.car
     const name = car.manufacturer + ' ' + car.model
     return (
-      <TableRow onClick={this.changeRoute}>
+      <TableRow>
         <td>
           <Image
             alt={name}
@@ -61,6 +61,9 @@ class FilteredCar extends Component {
         </td>
         <td>
           {car.price}
+        </td>
+        <td>
+          <Button icon={<EditIcon />} onClick={this.changeRoute} />
         </td>
         <td>
           <Button icon={<CloseIcon />} onClick={this.deleteCar} />

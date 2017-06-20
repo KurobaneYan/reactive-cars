@@ -108,6 +108,7 @@ class FilteredCarsList extends Component {
       'Fuel type',
       'Transmission',
       'Price',
+      'Edit',
       'Delete'
     ]
 
