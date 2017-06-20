@@ -11,6 +11,9 @@ export const RECEIVE_UPDATE_CAR = 'RECEIVE_UPDATE_CAR'
 export const FAILED_TO_UPDATE_CAR = 'FAILED_TO_UPDATE_CAR'
 export const SHOW_FILTER = 'SHOW_FILTER'
 export const HIDE_FILTER = 'HIDE_FILTER'
+export const REQUEST_CREATE_CAR = 'REQUEST_CREATE_CAR'
+export const RECEIVE_CREATE_CAR = 'RECEIVE_CREATE_CAR'
+export const FAILED_TO_CREATE_CAR = 'FAILED_TO_CREATE_CAR'
 
 const requestDeleteCar = (id) => ({
   type: REQUEST_DELETE_CAR,
@@ -74,3 +77,29 @@ export const showFilter = () => ({
 export const hideFilter = () => ({
   type: HIDE_FILTER
 })
+
+const requestCreateCar = (id) => ({
+  type: REQUEST_CREATE_CAR,
+  id
+})
+
+const receiveCreateCar = (id, data) => ({
+  type: RECEIVE_CREATE_CAR,
+  id,
+  data
+})
+
+const failedToCreateCar = (error) => ({
+  type: FAILED_TO_CREATE_CAR,
+  error
+})
+
+export const createCar = (id, car) => {
+  return dispatch => {
+    dispatch(requestCreateCar(id))
+    return axios.post('http://localhost:4000/create', car)
+    .then(response => response.json())
+    .then(json => dispatch(receiveCreateCar(id, json)))
+    .catch(error => dispatch(failedToCreateCar(error)))
+  }
+}

@@ -36,6 +36,19 @@ const admin = (state = initialState, action) => {
         error: action.error,
         isPerformingActon: false
       })
+    case ActionTypes.REQUEST_CREATE_CAR:
+      return Object.assign({}, state, {isPerformingActon: true, id: action.id})
+    case ActionTypes.RECEIVE_CREATE_CAR:
+      return Object.assign({}, state, {
+        id: action.id,
+        data: action.data,
+        isPerformingActon: false
+      })
+    case ActionTypes.FAILED_TO_CREATE_CAR:
+      return Object.assign({}, state, {
+        error: action.error,
+        isPerformingActon: false
+      })
     case ActionTypes.SHOW_FILTER:
       return Object.assign({}, { ...state, isFilterVisible: true })
     case ActionTypes.HIDE_FILTER:

@@ -9,6 +9,7 @@ import Box from 'grommet/components/Box'
 
 import Home from './Home'
 import EditPage from './EditPage'
+import CreatePage from './CreatePage'
 
 class Index extends Component {
   render () {
@@ -22,12 +23,15 @@ class Index extends Component {
               </Link>
             </Title>
             <Box>
-              hello, Admin
+              <Link to='/admin/create'>
+                Add new car
+              </Link>
             </Box>
           </Header>
           <Section>
             <Switch>
               <Route exact path='/admin' component={Home} />
+              <Route path='/admin/create' component={CreatePage} />
               <Route path='/admin/edit/:id' component={EditPage} />
               <Redirect from='/admin' to='/admin' />
             </Switch>

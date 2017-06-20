@@ -4,6 +4,7 @@ export const REQUEST_SINGLE_CAR = 'REQUEST_SINGLE_CAR'
 export const RECEIVE_SINGLE_CAR = 'RECEIVE_SINGLE_CAR'
 export const RESET_SINGLE_CAR = 'RESET_SINGLE_CAR'
 export const SET_MANUFACTURER = 'SET_MANUFACTURER'
+export const SET_CAR = 'SET_CAR'
 export const SET_MODEL = 'SET_MODEL'
 export const SET_YEAR = 'SET_YEAR'
 export const SET_KILOMETRAGE = 'SET_KILOMETRAGE'
@@ -99,4 +100,9 @@ export const addPhoto = (photo) => ({
 export const removePhoto = (photo) => ({
   type: REMOVE_PHOTO,
   photo
+})
+
+export const setCar = (car) => ({
+  type: SET_CAR,
+  car
 })

@@ -43,6 +43,8 @@ const singleCar = (state = initialState, action) => {
       const photos = state.photos.slice(0, state.photos.length - 1)
       return Object.assign({}, { ...state, photos })
     }
+    case ActionTypes.SET_CAR:
+      return Object.assign({}, state, action.car)
     default:
       return state
   }
