@@ -11,9 +11,7 @@ export const initialFilter = {
   engineDisplacement: 0,
   priceFrom: 0,
   priceTo: 1000000,
-  displayCars: 10,
-  catalogIsFetching: false,
-  catalog: {}
+  displayCars: 10
 }
 
 export const filter = (state = initialFilter, action) => {
@@ -39,13 +37,6 @@ export const filter = (state = initialFilter, action) => {
     case ActionTypes.FILTER_BY_ENGINE_DISPLACEMENT:
       return Object.assign({}, state, {
         engineDisplacement: action.engineDisplacement
-      })
-    case ActionTypes.REQUEST_CATALOG:
-      return Object.assign({}, state, {catalogIsFetching: true})
-    case ActionTypes.RECEIVE_CATALOG:
-      return Object.assign({}, state, {
-        catalog: action.catalog,
-        catalogIsFetching: false
       })
     case ActionTypes.RESET_FORM:
       return Object.assign({}, state, initialFilter, {catalog: state.catalog})

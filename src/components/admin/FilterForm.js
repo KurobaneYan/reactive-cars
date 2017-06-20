@@ -63,7 +63,7 @@ class FilteredForm extends Component {
     const catalog = this.props.catalog
     let models = ['']
     let manufacturers = ['']
-    if (catalog.catalogIsFetching && isEmpty(catalog.data)) {
+    if (catalog.catalogIsFetching && isEmpty(catalog.catalog)) {
       manufacturers = manufacturers.concat(Object.keys(manufacturerModels))
       if (filter.manufacturer) {
         models = models.concat(manufacturerModels[filter.manufacturer])
@@ -240,7 +240,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(Actions.resetForm())
   },
   changeRoute: (route) => {
-    const newRoute = '/filter?' + route
+    const newRoute = '/admin?' + route
     dispatch(push(newRoute))
   },
   restoreFilter: (filter) => {
