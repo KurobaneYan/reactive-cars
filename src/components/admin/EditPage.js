@@ -29,7 +29,7 @@ class EditPage extends Component {
 
   componentDidMount () {
     const id = this.props.match.params.id
-    this.props.showCar(id)
+    this.props.readCar(id)
   }
 
   componentWillUnmount () {
@@ -147,8 +147,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  showCar: (id) => {
-    dispatch(Actions.showCar(id))
+  readCar: (id) => {
+    dispatch(Actions.readCar(id))
   },
   onManufacturerChange: (e) => {
     dispatch(Actions.setManufacturer(e.target.value))

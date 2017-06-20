@@ -33,6 +33,15 @@ export const showCar = (id) => {
   }
 }
 
+export const readCar = (id) => {
+  return dispatch => {
+    dispatch(requestCar())
+    return fetch('http://localhost:4000/read/' + id)
+    .then(response => response.json())
+    .then(json => dispatch(receiveCar(json)))
+  }
+}
+
 export const resetCar = () => ({
   type: RESET_SINGLE_CAR
 })
