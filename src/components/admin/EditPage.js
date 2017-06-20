@@ -53,7 +53,7 @@ class EditPage extends Component {
           <Heading>
             Car not found
           </Heading>
-          <Link to='/'>
+          <Link to='/admin'>
             Return to home page
           </Link>
         </Box>
