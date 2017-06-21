@@ -19,11 +19,15 @@ class FilterPage extends Component {
     const hidden = !this.props.isFilterVisible
     return (
       <Box>
-        <Button onClick={this.props.showFilter} primary>
+        <Button onClick={this.props.showFilter}>
           Show filter
         </Button>
         <Layer
-          closer={<Button onClick={this.props.hideFilter}><CloseIcon /></Button>}
+          closer={
+            <Box align='end'>
+              <Button onClick={this.props.hideFilter} secondary icon={<CloseIcon />} />
+            </Box>
+          }
           flush
           hidden={hidden}>
           <FilterForm />

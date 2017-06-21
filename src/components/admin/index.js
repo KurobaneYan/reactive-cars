@@ -16,7 +16,7 @@ class Index extends Component {
     return (
       <GrommetApp>
         <Article>
-          <Header colorIndex='accent-3' pad='medium' justify='between'>
+          <Header colorIndex='neutral-4' pad='medium' justify='between'>
             <Title>
               <Link to='/admin'>
                 REACTIVE CARS

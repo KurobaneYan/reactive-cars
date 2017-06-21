@@ -141,7 +141,6 @@ class FilteredForm extends Component {
         </FormFields>
         <Footer pad={{'vertical': 'medium'}}>
           <Button label='Reset'
-            secondary
             fill
             onClick={this.props.resetForm} />
         </Footer>
