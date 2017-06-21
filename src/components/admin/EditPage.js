@@ -186,7 +186,7 @@ class EditPage extends Component {
             </Dropzone>
           </Box>
           {showPhotos ? (
-            <Carousel>
+            <Carousel persistentNav={false} autoplaySpeed={100000}>
               {photos}
             </Carousel>
           ) : (
