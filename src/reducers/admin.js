@@ -1,6 +1,6 @@
 import * as ActionTypes from '../actions/admin'
 
-export const initialState = {
+const initialState = {
   isPerformingActon: false,
   id: {},
   data: {},

@@ -1,6 +1,6 @@
 import * as ActionTypes from '../actions/catalog'
 
-export const initialFilter = {
+const initialFilter = {
   catalogIsFetching: false,
   data: {}
 }

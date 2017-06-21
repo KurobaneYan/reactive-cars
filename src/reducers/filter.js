@@ -1,6 +1,6 @@
 import * as ActionTypes from '../actions/filter'
 
-export const initialFilter = {
+const initialFilter = {
   manufacturer: null,
   model: null,
   yearFrom: 1990,
@@ -14,7 +14,7 @@ export const initialFilter = {
   displayCars: 10
 }
 
-export const filter = (state = initialFilter, action) => {
+const filter = (state = initialFilter, action) => {
   switch (action.type) {
     case ActionTypes.FILTER_BY_MANUFACTURER:
       return Object.assign({}, state, {manufacturer: action.manufacturer})
@@ -50,3 +50,5 @@ export const filter = (state = initialFilter, action) => {
       return state
   }
 }
+
+export default filter
